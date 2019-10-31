@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { CategoryProvider } from "../../../providers/category/category";
+import { Category } from "../../../app/Models/category";
+import { CustomerDiscoverShopsPage } from "./customer-discover-shops/customer-discover-shops";
 
 /**
  * Generated class for the CustomerDiscoverPage page.
@@ -10,16 +13,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-customer-discover',
-  templateUrl: 'customer-discover.html',
+  selector: "page-customer-discover",
+  templateUrl: "customer-discover.html"
 })
 export class CustomerDiscoverPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private categProv: CategoryProvider
+  ) {}
+  categs:Category[];
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CustomerDiscoverPage');
+    console.log("ionViewDidLoad CustomerDiscoverPage");
+    this.categProv.getAll().subscribe((resp:Category[])=>{
+      this.categs=resp;
+    })
   }
-
+  goToShops(categId){
+    this.navCtrl.push(CustomerDiscoverShopsPage,{categId});
+  }
 }

@@ -1,4 +1,7 @@
 page-owner-shops-new {
+  .login-logo{
+    max-width: 50%;
+  }
     ion-item:first-child {
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
@@ -15,5 +18,9 @@ page-owner-shops-new {
           color: rgba(0, 0, 0, 0.6);
           font-size: 1.2em;
         }
+      }
+      .sign-in{
+        border-radius: 20px;
+        background-color: #25B7D3;
       }
 }

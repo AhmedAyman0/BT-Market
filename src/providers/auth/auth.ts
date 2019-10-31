@@ -14,7 +14,8 @@ export class AuthProvider {
   loader;
     private currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<any>;
-    url = "http://localhost:5000/api";
+    // url = "http://localhost:5000/api";
+    url = "https://pure-sierra-38607.herokuapp.com/api";
     constructor(private http: HttpClient,
       private storage:Storage,
       private alertController:AlertController,

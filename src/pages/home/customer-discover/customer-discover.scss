@@ -1,3 +1,14 @@
 page-customer-discover {
-
+  .shadow {
+    background-color: #50b9ed;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+  }
+  .head {
+    font-size: 3rem;
+    padding: 2%;
+    text-align: center;
+    color: #50b9ed;
+  }
 }

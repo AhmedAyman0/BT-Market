@@ -6,33 +6,33 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>ownerShopsNew</ion-title>
+    <ion-title>Add another Shop</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div text-center class="logo-container">
-    <img class="login-logo" src="./assets/imgs/clean_connect.png" alt="Logo of clean connect">
-      <h4>Sign in to your account</h4>
+  <div text-center >
+    <img class="login-logo" src="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Shop-512.png" alt="Logo of clean connect">
+      <h4>Enter Your shop info</h4>
     </div>
     <form [formGroup]="form" (submit) = "onSubmit()" novalidate>
       <ion-list>  
   
         <ion-item>
-          <ion-label><ion-icon name="ios-person-outline" item-left></ion-icon></ion-label>
+          <ion-label><ion-icon name="ios-cart-outline" item-left></ion-icon></ion-label>
           <ion-input type="text" v placeholder="Shop Name" formControlName="name"></ion-input>
         </ion-item>
         <ion-item no-lines  *ngIf="!form.controls.name.valid && (form.controls.name.dirty)">
         <div>
-          Please enter valid shopName
+          Please enter valid shop name
         </div>
         </ion-item>
         <ion-item>
-          <ion-label><ion-icon name="ios-lock-outline" item-left></ion-icon></ion-label>
+          <ion-label><ion-icon name="ios-link-outline" item-left></ion-icon></ion-label>
           <ion-input type="text"  placeholder="Url of Image" formControlName="imgUrl"></ion-input>
         </ion-item>
   
       </ion-list>
-      <button class="sign-in" type="submit" ion-button full favourite [disabled]="!form.valid">Sign In</button>
+      <button class="sign-in" type="submit" ion-button full favourite [disabled]="!form.valid">Add</button>
     </form>
 </ion-content>

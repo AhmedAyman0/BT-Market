@@ -31,6 +31,14 @@ import { RegisterPageModule } from '../pages/register/register.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { OwnerShopsNewPage } from '../pages/owner-home/owner-shops-new/owner-shops-new';
 import { OwnerShopsNewPageModule } from '../pages/owner-home/owner-shops-new/owner-shops-new.module';
+import { ItemProvider } from '../providers/item/item';
+import { OwnerShopItemsNewPageModule } from '../pages/owner-home/owner-shops/owner-shop-items/owner-shop-items-new/owner-shop-items-new.module';
+import { OwnerShopItemsNewPage } from '../pages/owner-home/owner-shops/owner-shop-items/owner-shop-items-new/owner-shop-items-new';
+import { CategoryProvider } from '../providers/category/category';
+import { CustomerItemsListPageModule } from '../pages/home/customer-discover/customer-discover-shops/customer-items-list/customer-items-list.module';
+import { CustomerDiscoverShopsPageModule } from '../pages/home/customer-discover/customer-discover-shops/customer-discover-shops.module';
+import { CustomerItemsListPage } from '../pages/home/customer-discover/customer-discover-shops/customer-items-list/customer-items-list';
+import { CustomerDiscoverShopsPage } from '../pages/home/customer-discover/customer-discover-shops/customer-discover-shops';
 
 
 @NgModule({
@@ -48,6 +56,9 @@ import { OwnerShopsNewPageModule } from '../pages/owner-home/owner-shops-new/own
     OwnerDealsPageModule,
     OwnerShopItemsPageModule,
     CustomerDealsPageModule,
+    CustomerItemsListPageModule,
+    CustomerDiscoverShopsPageModule,
+    OwnerShopItemsNewPageModule,
     CustomerDiscoverPageModule,
     OwnerHomePageModule,
     BrowserModule,
@@ -63,7 +74,10 @@ import { OwnerShopsNewPageModule } from '../pages/owner-home/owner-shops-new/own
     RegisterPage,
     OwnerHomePage,
     OwnerShopItemsPage,
+    CustomerItemsListPage,
+    CustomerDiscoverShopsPage,
     OwnerShopsPage,
+    OwnerShopItemsNewPage,
     CustomerDealsPage,
     CustomerDiscoverPage,
     OwnerDealsPage,
@@ -78,6 +92,8 @@ import { OwnerShopsNewPageModule } from '../pages/owner-home/owner-shops-new/own
     RoleProvider,
     LoadingProvider,
     ShopProvider,
+    ItemProvider,
+    CategoryProvider,
     
   ]
 })

@@ -9,7 +9,8 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class ShopProvider {
-  url='http://localhost:5000/api/shops'
+  // url='http://localhost:5000/api/shops'
+  url='https://pure-sierra-38607.herokuapp.com/api/shops'
   constructor(private http: HttpClient) {
     console.log('Hello ShopProvider Provider');
   }

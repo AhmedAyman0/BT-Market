@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { Shop } from "../../../../app/Models/shop";
 import { ShopProvider } from "../../../../providers/shop/shop";
 import { Item } from "../../../../app/Models/item";
+import { OwnerShopItemsNewPage } from "./owner-shop-items-new/owner-shop-items-new";
 
 /**
  * Generated class for the OwnerShopItemsPage page.
@@ -34,5 +35,8 @@ export class OwnerShopItemsPage {
       }
     )
     console.log("ionViewDidLoad OwnerShopItemsPage");
+  }
+  addItem(){
+    this.navCtrl.push(OwnerShopItemsNewPage,{shopId:this.shopId});
   }
 }
