@@ -19,7 +19,7 @@ loader;
       content:'Please wait ...',
       duration: 5000,
     });
-      return await this.loader.present().then(() => {
+      return  this.loader.present().then(() => {
         console.log('presented');
         if (this.isLoading) {
           this.loader.dismiss().then(() => console.log('abort presenting'));

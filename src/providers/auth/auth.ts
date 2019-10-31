@@ -31,10 +31,8 @@ export class AuthProvider {
     }
 
      login(cardentials) {
-
-
-        this.loadingProv.present();
-        this.http.post<any>(`${this.url}/login`, cardentials)
+         this.loadingProv.present();
+        return this.http.post<any>(`${this.url}/login`, cardentials)
         .pipe(map(async token => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             this.storage.set('token', token);
@@ -42,7 +40,7 @@ export class AuthProvider {
             const user = helper.decodeToken(token.token);
             console.log(token.token)
             this.currentUserSubject.next(user);
-              await this.loadingProv.dismiss();
+            this.loadingProv.dismiss();
             return user;
         })).catch(async error=>{
            this.showAlert(error.error.msg);

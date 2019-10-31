@@ -6,6 +6,8 @@ import { HomePage } from '../home/home';
 import { RoleProvider } from '../../providers/role/role';
 import { OwnerHomePage } from '../owner-home/owner-home';
 import { RegisterPage } from '../register/register';
+import { first } from 'rxjs/operators';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -62,11 +64,13 @@ export class LoginPage {
     onSubmit() {
       this.submitted=true;
         if (this.form.valid) {
-          this.authServ.login(this.form.value).subscribe(resp=>{
-            if(resp.role==this.rolesProvider.Roles.Customer){
+          this.authServ.login(this.form.value).pipe(first()).subscribe(async resp=>{
+            let data = await resp;
+            console.log(data);
+            if(data.role==this.rolesProvider.Roles.Customer){
               return this.navCtrl.setRoot(HomePage);
             }
-            if(resp.role==this.rolesProvider.Roles.ShopOwner){
+            if(data.role==this.rolesProvider.Roles.ShopOwner){
               return this.navCtrl.setRoot(OwnerHomePage);
             }
           }

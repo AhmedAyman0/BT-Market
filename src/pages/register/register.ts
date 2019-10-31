@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { RoleProvider } from '../../providers/role/role';
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
+import { Toast } from '@ionic-native/toast';
 
 /**
  * Generated class for the RegisterPage page.
@@ -31,11 +32,12 @@ export class RegisterPage {
     private authServ:AuthProvider,
     private navCtrl:NavController,
     private rolesProvider:RoleProvider,
-    private app:App
+    private toast:Toast
     ) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required,Validators.email]],
-      password:['',Validators.required]
+      password:['',Validators.required],
+      role:[''],
 
   });
 
@@ -65,9 +67,17 @@ export class RegisterPage {
           return ;
         }
         else{
-          this.authServ.register(this.form.value).subscribe(resp=>{
-            console.log('reg',resp)
-              this.navCtrl.setRoot(HomePage)
+          let newUser = this.form.value;
+          if(newUser.role){
+            newUser.role=this.rolesProvider.Roles.ShopOwner;
+          }
+          else{
+            newUser.role=this.rolesProvider.Roles.Customer;
+          }
+          this.authServ.register(newUser).subscribe(resp=>{
+            console.log('reg',resp);
+              this.navCtrl.setRoot(LoginPage);
+              this.toast.show('Registeration Successfull! , Login to Activate','1500','top').subscribe();
         },
         error=>
         {

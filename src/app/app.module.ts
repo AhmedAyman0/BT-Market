@@ -1,14 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
+import {  NgModule } from '@angular/core';
+import { IonicApp,  IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
 import { IonicStorageModule} from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { LoginPageModule } from '../pages/login/login.module';
 import {  JwtInterceptor } from '../providers/jwt-interceptopr/jwt-interceptopr';
 import { AuthProvider } from '../providers/auth/auth';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -20,22 +18,39 @@ import { CustomerDealsPage } from '../pages/home/customer-deals/customer-deals';
 import { CustomerDiscoverPage } from '../pages/home/customer-discover/customer-discover';
 import { RegisterPage } from '../pages/register/register';
 import { LoadingProvider } from '../providers/loading/loading';
+import { Toast } from '@ionic-native/toast';
+import { ShopProvider } from '../providers/shop/shop';
+import { OwnerShopItemsPage } from '../pages/owner-home/owner-shops/owner-shop-items/owner-shop-items';
+import { OwnerHomePageModule } from '../pages/owner-home/owner-home.module';
+import { CustomerDiscoverPageModule } from '../pages/home/customer-discover/customer-discover.module';
+import { CustomerDealsPageModule } from '../pages/home/customer-deals/customer-deals.module';
+import { OwnerShopItemsPageModule } from '../pages/owner-home/owner-shops/owner-shop-items/owner-shop-items.module';
+import { OwnerDealsPageModule } from '../pages/owner-home/owner-deals/owner-deals.module';
+import { OwnerShopsPageModule } from '../pages/owner-home/owner-shops/owner-shops.module';
+import { RegisterPageModule } from '../pages/register/register.module';
+import { LoginPageModule } from '../pages/login/login.module';
+import { OwnerShopsNewPage } from '../pages/owner-home/owner-shops-new/owner-shops-new';
+import { OwnerShopsNewPageModule } from '../pages/owner-home/owner-shops-new/owner-shops-new.module';
+
 
 @NgModule({
   declarations: [
-    MyApp,
     HomePage,
-    LoginPage,
-    RegisterPage,
-    OwnerShopsPage,
-    OwnerDealsPage,
-    CustomerDealsPage,
-    CustomerDiscoverPage,
-    OwnerHomePage
+    MyApp,
+
   ],
   imports: [
+    OwnerHomePageModule,
+    LoginPageModule,
+    RegisterPageModule,
+    OwnerShopsPageModule,
+    OwnerShopsNewPageModule,
+    OwnerDealsPageModule,
+    OwnerShopItemsPageModule,
+    CustomerDealsPageModule,
+    CustomerDiscoverPageModule,
+    OwnerHomePageModule,
     BrowserModule,
-    
     IonicStorageModule.forRoot(),
     HttpClientModule,
     IonicModule.forRoot(MyApp)
@@ -44,8 +59,10 @@ import { LoadingProvider } from '../providers/loading/loading';
   entryComponents: [
     MyApp,
     LoginPage,
+    OwnerShopsNewPage,
     RegisterPage,
     OwnerHomePage,
+    OwnerShopItemsPage,
     OwnerShopsPage,
     CustomerDealsPage,
     CustomerDiscoverPage,
@@ -55,12 +72,12 @@ import { LoadingProvider } from '../providers/loading/loading';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Toast,
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true},
     AuthProvider,
-    Storage,
     RoleProvider,
     LoadingProvider,
+    ShopProvider,
     
   ]
 })
