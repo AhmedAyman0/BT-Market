@@ -5,23 +5,58 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-list>
-      <button ion-item (click)="openPage(homePage)">
-        <ion-icon left name="basket"></ion-icon>
+    <!-- <ion-list>
+
+      <button ion-item (click)="custgoToShops()">
+        <ion-icon left name="cash"></ion-icon>
         Explore Shops
       </button>
+      
+      <button ion-item (click)="custgoToCategories()">
+          <ion-icon left name="logo-buffer"></ion-icon>
+          Explore Categories
+        </button>
+      <ion-footer>
+          <button ion-item (click)="logOut()">
+              <ion-icon left name="log-out"></ion-icon>
+      
+              Log Out
+            </button>
+      </ion-footer>
 
-      <button ion-item (click)="openPage(friendsPage)">
-        <ion-icon left name="cash"></ion-icon>
-        Explore Items
-      </button>
-      <button ion-item (click)="logOut()">
-        <ion-icon left name="log-out"></ion-icon>
 
-        Log Out
-      </button>
+    </ion-list> -->
+    <div #header>
+        <ion-row style="align-items:center;">
 
-    </ion-list>
+          <ion-col style="height: fit-content !important;" offset-3 col-6>
+            <img class="user-avatar round" [src]="user?.avatar" 
+            />
+            <button style="margin-left:11px;" (click)="goProfile()" ion-button clear small >View Profile</button>
+          </ion-col>
+        </ion-row>
+        <ion-row margin style="justify-content: left;">
+          <h3>Explore</h3>
+        </ion-row>
+      </div>
+      <ion-list no-lines>
+          <button ion-item (click)="custgoToShops()">
+              <ion-icon left name="cash"></ion-icon>
+              Explore Shops
+            </button>
+            
+            <button ion-item (click)="custgoToCategories()">
+                <ion-icon left name="logo-buffer"></ion-icon>
+                Explore Categories
+              </button>
+            <ion-footer>
+                <button ion-item (click)="logOut()">
+                    <ion-icon left name="log-out"></ion-icon>
+            
+                    Log Out
+                  </button>
+            </ion-footer>
+      </ion-list>
   </ion-content>
 </ion-menu>
 
@@ -33,24 +68,21 @@
   </ion-header>
   <ion-content>
     <ion-list text-justify>
-      <button ion-item (click)="gotoShops()">
+      <button ion-item (click)="addShop()">
         <ion-icon left name="basket"></ion-icon>
-         My Shops
+         Add a new shop
       </button>
 
       <button ion-item (click)="openPage(friendsPage)">
         <ion-icon left name="search"></ion-icon>
         Explore Items
       </button>
-      <button ion-item (click)="logOut()">
-        <ion-icon left name="log-out"></ion-icon>
-        Log Out
-      </button>
+
       <ion-footer>
-            <button ion-item (click)="promote()">
-                    <ion-icon left name="pricetags"></ion-icon>
-                    Promote to a Seller
-                  </button>
+          <button ion-item (click)="logOut()">
+              <ion-icon left name="log-out"></ion-icon>
+              Log Out
+            </button>
         </ion-footer>
     </ion-list>
 

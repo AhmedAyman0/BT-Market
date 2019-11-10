@@ -5,4 +5,15 @@ page-customer-discover-shops {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         text-align: center;
     }
+    .vertical-center {
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+      }
+      .head {
+        font-size: 3rem;
+        padding: 2%;
+        text-align: center;
+        color: #50b9ed;
+      }
 }

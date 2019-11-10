@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { CategoryProvider } from "../../../providers/category/category";
 import { Category } from "../../../app/Models/category";
 import { CustomerDiscoverShopsPage } from "./customer-discover-shops/customer-discover-shops";
+import { CartProvider } from "../../../providers/cart/cart";
+import { CartPage } from "../../cart/cart";
 
 /**
  * Generated class for the CustomerDiscoverPage page.
@@ -20,9 +22,16 @@ export class CustomerDiscoverPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private categProv: CategoryProvider
-  ) {}
+    private categProv: CategoryProvider,
+    private cartProv:CartProvider
+  ) {
+    this.cartProv.Cart.subscribe(cart=>{
+      this.cart=cart;
+    }
+    );
+  }
   categs:Category[];
+  cart:any[];
   ionViewDidLoad() {
     console.log("ionViewDidLoad CustomerDiscoverPage");
     this.categProv.getAll().subscribe((resp:Category[])=>{
@@ -31,5 +40,8 @@ export class CustomerDiscoverPage {
   }
   goToShops(categId){
     this.navCtrl.push(CustomerDiscoverShopsPage,{categId});
+  }
+  openCart(){
+    this.navCtrl.push(CartPage);
   }
 }

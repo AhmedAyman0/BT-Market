@@ -14,3 +14,108 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@media screen and (max-width : 370px)
+{
+ .card-title-md
+  {
+    font-size: 2rem ;
+  }
+}
+
+.vertical-align{
+  justify-content: center;
+	display: flex!important;
+ 	align-items: center!important;
+}
+ion-card{
+  border-radius: 20px !important;
+}
+
+ion-col{
+  height: 300px !important;
+}
+
+ion-card img {
+  display: block;
+  width: 100%;
+  height: 172px;
+}
+#notification-button {            
+  position: relative;
+  width: 42px;
+  top:1px;
+  right: 1px;
+  overflow: visible!important;
+}
+
+
+#notifications-badge {
+  background-color: red;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  border-radius: 100%;
+}
+
+
+#menu-avatar {
+  .icon-badge {
+    top: 0px;
+    right: 0px;
+    background: #FF5D5D;
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    padding: 5px 8px;
+    border-radius: 15px;
+  }
+  
+  .user-avatar {
+    padding: .5em;
+  }
+  h3,
+  .label {
+    color: white;
+    font-weight: bold;
+  }
+  .item {
+    background: transparent;
+  }
+  ion-content {
+    background: linear-gradient(48deg, rgba(157, 72, 173, 0.8) 0%, rgba(157, 72, 173, 0.86) 28%, rgba(0, 168, 168, 0.98) 93%, rgba(0, 168, 168, 1) 100%);
+  }
+  .menu-inner {
+    background: rgba(255, 255, 255, .3);
+  }
+}
+
+// Material Design Sidemenu
+#menu-material {
+  .menu-header {
+    padding: 5px 15px;
+    background-image: url('../assets/img/misc/material-design-background.jpg');
+    background-size: cover;
+    color: white;
+    .name {
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+    .e-mail {
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+  }
+  .user-avatar {
+    padding: .5em;
+    height: 12vh;
+  }
+  h3,
+  .label,
+  {
+    color: #999;
+    font-weight : 400;
+  }
+  ion-icon {
+    color: #777;
+  }
+}

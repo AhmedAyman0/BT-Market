@@ -52,7 +52,6 @@ export class AuthProvider {
 
     }
     register(cardentials){
-      this.loadingProv.present();
       return this.http.post<any>(`${this.url}/register`, cardentials)
           .pipe(map(token => {
               // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -61,10 +60,8 @@ export class AuthProvider {
               const user = helper.decodeToken(token.token);
               console.log(token.token)
               this.currentUserSubject.next(user);
-              this.loadingProv.dismiss();
               return user;
           })).catch(async error=>{
-            this.loadingProv.dismiss();
              this.showAlert(error.error.msg);
             return new Error(error);
           });

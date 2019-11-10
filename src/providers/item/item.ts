@@ -16,4 +16,7 @@ export class ItemProvider {
   newItem(item){
     return this.http.post(this.url,item);
   }
+  getById(id){
+    return this.http.get(this.url+'/'+id);
+  }
 }

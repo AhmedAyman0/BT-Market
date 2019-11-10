@@ -7,6 +7,13 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Categories</ion-title>
+    <ion-buttons right>
+      <button (click)="openCart()" id="notification-button" ion-button clear>
+        <ion-icon  name="cart">
+          <ion-badge *ngIf="cart?.length>0" id="notifications-badge" color="danger">{{cart.length}}</ion-badge>
+        </ion-icon>              
+    </button>
+    </ion-buttons>
         <ion-buttons left>
           <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
@@ -21,13 +28,17 @@
         <hr>
       </div>
   <ion-grid>
-    <ion-row>
-      <ion-col col-6 col-lg-4 col-md-6 col-sm-6>
-          <ion-card (click)="goToShops(categ.id)"   *ngFor="let categ of categs">
-              <img style="max-width: 80%;" src={{categ.imgUrl}}/>
-              <ion-card-title class="shadow">{{categ.name}}</ion-card-title>
+    <ion-row *ngIf="categs?.length > 0">
+      <ion-col  *ngFor="let categ of categs" col-6  col-md-6 col-sm-6>
+          <ion-card (click)="goToShops(categ.id)"   >
+              <img  src={{categ.imgUrl}}/>
+              <ion-card-title  class="shadow">{{categ.name}}</ion-card-title>
             </ion-card>
       </ion-col>
+    </ion-row>
+    <ion-row  *ngIf="categs?.length === 0" >
+      <ion-col offset-3 col-6></ion-col>
+      <p>No Content to show</p>
     </ion-row>
   </ion-grid>
 

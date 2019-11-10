@@ -22,12 +22,9 @@
 
 <ion-content padding>
   <ion-grid>
-    <ion-row>
-      <ion-col col-6 col-lg-4 col-md-6 col-sm-6>
-          <ion-card (click)="goToItemsList(shop._id)"  *ngFor="let shop of shops">
-              <img style="max-width: 80%;" src={{shop.imgUrl}}/>
-              <ion-card-title class="shadow">{{shop.name}}</ion-card-title>
-            </ion-card>
+    <ion-row >
+      <ion-col col-6 col-lg-4 col-md-6 col-sm-6  *ngFor="let shop of shops">
+        <shop (click)="goToItemsList(shop._id)"  [shop]="shop" ></shop>
       </ion-col>
     </ion-row>
   </ion-grid>

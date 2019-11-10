@@ -10,6 +10,9 @@ import { AuthProvider } from "../../providers/auth/auth";
 import { RoleProvider } from "../../providers/role/role";
 import { LoginPage } from "../login/login";
 import { Toast } from "@ionic-native/toast";
+import { first } from "rxjs/operators";
+import { HomePage } from "../home/home";
+import { OwnerHomePage } from "../owner-home/owner-home";
 
 /**
  * Generated class for the RegisterPage page.
@@ -73,14 +76,28 @@ export class RegisterPage {
       this.authServ.register(newUser).subscribe(
         resp => {
           console.log("reg", resp);
-          this.navCtrl.setRoot(LoginPage);
           this.toast
-            .show(
-              "Registeration Successfull! , Login to Activate",
-              "1500",
-              "top"
-            )
+            .show("Registeration Successfull!", "1500", "top")
             .subscribe();
+          this.authServ
+            .login(this.form.value)
+            .pipe(first())
+            .subscribe(
+              async resp => {
+                let data = await resp;
+                console.log(data);
+                if (data.role == this.rolesProvider.Roles.Customer) {
+                  return this.navCtrl.setRoot(HomePage);
+                }
+                if (data.role == this.rolesProvider.Roles.ShopOwner) {
+                  return this.navCtrl.setRoot(OwnerHomePage);
+                }
+              },
+              error => {
+                this.navCtrl.insert(0, LoginPage);
+                this.navCtrl.popToRoot();
+              }
+            );
         },
         error => {
           console.log(error);

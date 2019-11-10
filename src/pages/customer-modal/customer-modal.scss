@@ -1,0 +1,17 @@
+page-customer-modal {
+  .vertical-align-content > * {
+    display: flex !important;
+    align-content: center !important;
+    align-items: center !important;
+  }
+  .img {
+        p {
+      font-size: 2.5rem;
+      color: darkblue;
+      margin-top: 10px;
+    margin-left: 23%;
+    }
+    width: 47%;
+    margin: 0 auto;
+  }
+}

@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { Component, ViewChild } from "@angular/core";
+import { IonicPage, NavController, NavParams, Nav } from "ionic-angular";
 import { ShopProvider } from "../../../providers/shop/shop";
 import { Shop } from "../../../app/Models/shop";
 import { OwnerShopItemsPage } from "./owner-shop-items/owner-shop-items";
@@ -40,7 +40,7 @@ export class OwnerShopsPage {
     console.log("ionViewDidLoad OwnerShopsPage");
   }
 
-  goToItemsList(shopId) {
+  goToItemsList = function(shopId) {
     this.navCtrl.push(OwnerShopItemsPage, { shopId });
   }
 

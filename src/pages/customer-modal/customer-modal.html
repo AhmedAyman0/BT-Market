@@ -1,0 +1,49 @@
+<!--
+  Generated template for the CustomerModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Confirm your Request</ion-title>
+  </ion-navbar>
+</ion-header>
+
+    <ion-content class="cards-bg vertical-align-content">
+
+        <ion-card>
+          <div class="img">
+          <img  style="height:  50%;" src={{item.imgUrl}}/>
+          <p >
+              {{item.price | currency}}
+             </p> 
+
+        </div>
+          <ion-card-content text-center>
+            <ion-card-title style="text-transform: capitalize;">
+              {{item.name}} 
+            </ion-card-title>
+            <span *ngIf="item.color" style="text-transform: capitalize;">
+                ||  Color : {{item.color}}
+            </span>
+            <p style="text-transform: capitalize;">
+             {{item.description}}
+            </p>
+
+          </ion-card-content>
+      
+          <ion-row margin>
+            <button full (click)="addToCart(true)" ion-button  color="primary" icon-start>
+              Add to cart
+              <ion-icon color="light" name="cart" ight></ion-icon>
+            </button>
+              <button full (click)="addToCart(false)" ion-button  color="gray" icon-start>
+                Cancel
+              </button>
+
+
+          </ion-row>
+      
+        </ion-card>
+</ion-content>

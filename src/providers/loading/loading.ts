@@ -17,7 +17,6 @@ loader;
   async present() {
     this.loader=  this.loadingController.create({
       content:'Please wait ...',
-      duration: 5000,
     });
       return  this.loader.present().then(() => {
         console.log('presented');

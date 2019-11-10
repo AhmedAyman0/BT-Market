@@ -23,4 +23,7 @@ export class ShopProvider {
   getById(id){
     return this.http.get(`${this.url}/${id}`);
   }
+  newShop(shop){
+    return this.http.post(`${this.url}`,shop);
+  }
 }
