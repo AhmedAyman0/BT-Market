@@ -28,4 +28,7 @@ export class CartProvider {
     this.items=this.items.filter(i=>i._id != item._id);
     return this._cart.next(this.items);
   }
+  nullify(){
+    return this._cart.next([]);
+  }
 }

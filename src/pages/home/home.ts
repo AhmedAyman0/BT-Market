@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { OwnerHomePage } from '../owner-home/owner-home';
 import { CustomerDiscoverPage } from './customer-discover/customer-discover';
 import { CustomerDealsPage } from './customer-deals/customer-deals';
+import { ChatroomPage } from '../chatroom/chatroom';
 
 @Component({
   selector: 'page-home',
@@ -14,12 +15,14 @@ import { CustomerDealsPage } from './customer-deals/customer-deals';
 export class HomePage {
   tab1;
   tab2;
+  tab3;
   message;
   isExpired=true;
   constructor(public navCtrl: NavController,private storage:Storage,private http:HttpClient) {
 
     this.tab1 = CustomerDiscoverPage;
     this.tab2 = CustomerDealsPage;
+    this.tab3 = ChatroomPage;
 
   }
   ionViewWillEnter(){

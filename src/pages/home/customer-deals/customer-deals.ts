@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 import { Request } from "../../../app/Models/request";
 import { CartProvider } from "../../../providers/cart/cart";
 import { CartPage } from "../../cart/cart";
+import { CheckOutProvider } from "../../../providers/check-out/check-out";
 
 /**
  * Generated class for the CustomerDealsPage page.
@@ -27,7 +28,8 @@ export class CustomerDealsPage {
     public navParams: NavParams,
     private requestProv: RequestProvider,
     private storage: Storage,
-    private cartProv:CartProvider
+    private cartProv:CartProvider,
+    private checkOutProv:CheckOutProvider
   ) {
     this.cartProv.Cart.subscribe(cart=>this.cart=cart)
   }
@@ -38,7 +40,7 @@ export class CustomerDealsPage {
   ionViewDidEnter() {
     this.storage.get("token").then(t => {
       this.userId = t.user.id;
-      this.requestProv.getFor(this.userId).subscribe((resp: Request[]) => {
+      this.checkOutProv.getCheckOutsFor(this.userId).subscribe((resp: Request[]) => {
         this.deals = resp;
         console.log("reqs", this.deals);
       });

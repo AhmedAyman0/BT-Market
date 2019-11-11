@@ -19,4 +19,7 @@ export class CheckOutProvider {
   newCheckOut(checkOut){
     return this.http.post(`${this.url}`,checkOut);
   }
+  getCheckOutsFor(id){
+    return this.http.get(`${this.url}/user/${id}`);
+  }
 }

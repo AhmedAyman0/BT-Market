@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CustomerDiscoverPage } from '../customer-discover/customer-discover';
 import { CustomerDealsPage } from '../customer-deals/customer-deals';
 import { CustomerDiscoverShopsPage } from '../customer-discover/customer-discover-shops/customer-discover-shops';
+import { ChatroomPage } from '../../chatroom/chatroom';
 
 /**
  * Generated class for the CustomerShopsHomePage page.
@@ -19,9 +20,11 @@ import { CustomerDiscoverShopsPage } from '../customer-discover/customer-discove
 export class CustomerShopsHomePage {
   tab1;
   tab2;
+  tab3;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.tab1 = CustomerDiscoverShopsPage;
     this.tab2 = CustomerDealsPage;
+    this.tab3 = ChatroomPage;
   }
 
   ionViewDidLoad() {

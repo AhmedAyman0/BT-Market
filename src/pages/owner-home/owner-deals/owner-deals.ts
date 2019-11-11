@@ -4,6 +4,8 @@ import { RequestProvider } from "../../../providers/request/request";
 import { Storage } from "@ionic/storage";
 import { Request } from "../../../app/Models/request";
 import { Toast } from '@ionic-native/toast';
+import { NotificationProvider } from "../../../providers/notification/notification";
+import { UserProvider } from "../../../providers/user/user";
 
 
 /**
@@ -25,6 +27,8 @@ export class OwnerDealsPage {
     private requestProv:RequestProvider,
     private storage:Storage,
     private toast: Toast,
+    private notify:NotificationProvider,
+    private userProv:UserProvider,
   ) {}
   sellerId;
   deals:Request[];
@@ -44,6 +48,9 @@ export class OwnerDealsPage {
   }
   approve(item,sItem:ItemSliding){
     item.isPending=false;
+    this.userProv.getUserById(item.from).subscribe((u:any)=>{
+      this.notify.pushNotification({msg:'Request approved!',email:u.email}).subscribe();
+    })
     this.requestProv.edit(item._id,item).subscribe(resp=>{
       this.toast.show(`Deal approved successfully!`, '2000', 'center').subscribe(
         toast => {

@@ -66,6 +66,16 @@
       <ion-title>BT-Market</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div #header>
+    <ion-row style="align-items:center;">
+
+      <ion-col style="height: fit-content !important;" offset-3 col-6>
+        <img class="user-avatar round" [src]="user?.avatar" 
+        />
+        <button style="margin-left:11px;" (click)="goProfile()" ion-button clear small >View Profile</button>
+      </ion-col>
+    </ion-row>
+  </div>
   <ion-content>
     <ion-list text-justify>
       <button ion-item (click)="addShop()">

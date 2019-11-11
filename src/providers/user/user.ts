@@ -10,13 +10,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserProvider {
 
-  url='https://pure-sierra-38607.herokuapp.com/api/users/';
+  url='https://pure-sierra-38607.herokuapp.com/api/users';
   constructor(public http: HttpClient) {
     console.log('Hello UserProvider Provider');
     
   }
   editUser(user,id){
     return this.http.put(`${this.url}/${id}`,user);
+  }
+  getUserById(id){
+    return this.http.get(`${this.url}/${id}`);
+
   }
 
 }

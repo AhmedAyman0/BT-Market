@@ -6,6 +6,7 @@ import { LoginPage } from '../login/login';
 import { OwnerShopsPage } from './owner-shops/owner-shops';
 import { OwnerDealsPage } from './owner-deals/owner-deals';
 import { HomePage } from '../home/home';
+import { ChatroomPage } from '../chatroom/chatroom';
 
 /**
  * Generated class for the OwnerHomePage page.
@@ -22,6 +23,7 @@ import { HomePage } from '../home/home';
 export class OwnerHomePage {
   tab1;
   tab2;
+  tab3;
   isExpired=true;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
@@ -31,6 +33,7 @@ export class OwnerHomePage {
     ) {
     this.tab1 = OwnerShopsPage;
     this.tab2 = OwnerDealsPage;
+    this.tab3 = ChatroomPage;
   }
   ionViewWillEnter(){
     const helper = new JwtHelperService();

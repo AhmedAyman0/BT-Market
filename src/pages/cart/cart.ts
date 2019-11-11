@@ -7,6 +7,10 @@ import { CheckOut } from "../../app/Models/checkOut";
 import { Storage } from "@ionic/storage";
 import { Request } from "../../app/Models/request";
 import { RequestProvider } from "../../providers/request/request";
+import { UserProvider } from "../../providers/user/user";
+import { NotificationProvider } from "../../providers/notification/notification";
+import { ItemProvider } from "../../providers/item/item";
+import { ShopProvider } from "../../providers/shop/shop";
 
 /**
  * Generated class for the CartPage page.
@@ -30,6 +34,9 @@ export class CartPage {
     private cartProvider:CartProvider,
     private checkOutProvider:CheckOutProvider,
     private requestProv:RequestProvider,
+    private shopProv:ShopProvider,
+    private userProv:UserProvider,
+    private notify:NotificationProvider
   ) {
     this.cartProvider.Cart.subscribe(c=>this.cart=c);
     this.storage.get('token').then(
@@ -45,7 +52,7 @@ export class CartPage {
     this.cartProvider.remove(item);
   }
   goBack(){
-    this.navCtrl.setRoot(CustomerShopsHomePage);
+    this.navCtrl.pop();
   }
   checkOut(){
     console.log('checkout');
@@ -59,9 +66,19 @@ export class CartPage {
         this.cart.forEach(item=>{
           let request:any={};
           request.from=this.user.id;
-          request.to=item.shop.belongsTo;
           request.checkOut=checkOutId;
-          this.requestProv.addRequest(request).subscribe(resp=>console.log(resp))
+          request.item=item._id;
+          this.shopProv.getById(item.shop).subscribe((res:any)=>{
+            request.to=res.belongsTo._id;
+            this.requestProv.addRequest(request).subscribe(resp=>{
+              console.log('item',item)
+              this.userProv.getUserById(request.to).subscribe((r:any)=>{
+                this.notify.pushNotification({msg:"You have a new request",email:r.email}).subscribe();
+              })
+            });
+          })
+          this.navCtrl.pop();
+          this.cartProvider.nullify();
         }
           )
 

@@ -8,10 +8,13 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { OneSignal } from '@ionic-native/onesignal';
 import {  JwtInterceptor } from '../providers/jwt-interceptopr/jwt-interceptopr';
 import { AuthProvider } from '../providers/auth/auth';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OwnerHomePage } from '../pages/owner-home/owner-home';
+import { Push} from '@ionic-native/push';
+import {SocketIoModule,SocketIoConfig} from 'ngx-socket-io';
 import { RoleProvider } from '../providers/role/role';
 import { OwnerShopsPage } from '../pages/owner-home/owner-shops/owner-shops';
 import { OwnerDealsPage } from '../pages/owner-home/owner-deals/owner-deals';
@@ -60,9 +63,15 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { FIREBASE_CONFIG } from '../config/firebase.config';
 import { UserProvider } from '../providers/user/user';
 import { CheckOutProvider } from '../providers/check-out/check-out';
+import { NotificationProvider } from '../providers/notification/notification';
+import { ChatroomPageModule } from '../pages/chatroom/chatroom.module';
+import { ChatroomPage } from '../pages/chatroom/chatroom';
  
 
-
+const socketConfig:SocketIoConfig = {
+  url:'http://pure-sierra-38607.herokuapp.com',
+  options:{}
+}
 @NgModule({
   declarations: [
     HomePage,
@@ -71,11 +80,13 @@ import { CheckOutProvider } from '../providers/check-out/check-out';
 
   ],
   imports: [
+    SocketIoModule.forRoot(socketConfig),
     CustomerShopsHomePageModule,
     OwnerHomePageModule,
     LoginPageModule,
     RegisterPageModule,
     CartPageModule,
+    ChatroomPageModule,
     CustomerModalPageModule,
     OwnerShopsPageModule,
     ProfilePageModule,
@@ -105,6 +116,7 @@ import { CheckOutProvider } from '../providers/check-out/check-out';
     CustomerModalPage,
     OwnerShopsNewPage,
     ProfilePage,
+    ChatroomPage,
     RegisterPage,
     OwnerHomePage,
     OwnerShopItemsPage,
@@ -126,15 +138,18 @@ import { CheckOutProvider } from '../providers/check-out/check-out';
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:true},
     AuthProvider,
     RoleProvider,
+    Push,
     GooglePlus,
     LoadingProvider,
     ShopProvider,
     ItemProvider,
+    OneSignal,
     CategoryProvider,
     RequestProvider,
     CartProvider,
     UserProvider,
     CheckOutProvider,
+    NotificationProvider,
     
   ]
 })

@@ -1,0 +1,7 @@
+<ion-item>
+
+  <h6> Order Number : {{checkOut._id}}</h6>
+    <span ion-button   color="gray" clear>Status :</span>
+    <span ion-button *ngIf="!checkOut.isPending"  color="secondary" clear>Approved!</span>
+    <span ion-button *ngIf="checkOut.isPending"  color="warning" clear>Pending</span>
+</ion-item>

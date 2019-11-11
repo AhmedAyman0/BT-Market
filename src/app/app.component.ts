@@ -14,6 +14,8 @@ import { CustomerShopsHomePage } from '../pages/home/customer-shops-home/custome
 import { OwnerShopsNewPage } from '../pages/owner-home/owner-shops-new/owner-shops-new';
 import { FIREBASE_CONFIG } from '../config/firebase.config';
 import { ProfilePage } from '../pages/profile/profile';
+import { OneSignal } from '@ionic-native/onesignal';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,6 +23,8 @@ import { ProfilePage } from '../pages/profile/profile';
 export class MyApp {
   rootPage:any ;
   user:any;
+  signalAppId='e3ad473d-a2e2-445f-8e86-b667961ca10a';
+  firebaseId='1050501326505';
   @ViewChild('content') nav: NavController
   constructor(platform: Platform,
      statusBar: StatusBar,
@@ -29,16 +33,55 @@ export class MyApp {
       private authProv:AuthProvider,
       private alertCtrl:AlertController,
       private storage:Storage,
+      private oneSignal:OneSignal,
       private Roles:RoleProvider,
+      private push:Push,
       ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.oneSignal.startInit(this.signalAppId, this.firebaseId);
+
+      this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+
+      this.oneSignal.handleNotificationReceived().subscribe(() => {
+      // do something when notification is received
+      });
+
+      this.oneSignal.handleNotificationOpened().subscribe(() => {
+        // do something when a notification is opened
+      });
+
+      this.oneSignal.endInit();
       console.log('pr');
+      ////////////////////////////////////////////////////
+    //   const options: PushOptions = {
+    //     android: {},
+    //     ios: {
+    //         alert: 'true',
+    //         badge: true,
+    //         sound: 'false'
+    //     },
+    //     windows: {},
+    //     browser: {
+    //         pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+    //     }
+    //  };
+     
+    //  const pushObject: PushObject = this.push.init(options);
+     
+     
+    //  pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
+     
+    //  pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
+     
+    //  pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
+
       initializeApp(FIREBASE_CONFIG);
       this.storage.get('token').then(t=>{
         let helper = new JwtHelperService();
         this.user=t.user;
+        oneSignal.setEmail(t.email);
         if(!helper.isTokenExpired(t.token)){
           if(t.user.role==Roles.Roles.Customer)
           this.rootPage=HomePage;
@@ -48,7 +91,7 @@ export class MyApp {
         else{
           this.rootPage=LoginPage;
         }
-      })
+      }).catch(err=>this.rootPage=LoginPage);
       statusBar.styleDefault();
       splashScreen.hide();
     });

@@ -13,6 +13,7 @@ import { OwnerHomePage } from "../owner-home/owner-home";
 import { RegisterPage } from "../register/register";
 import { first } from "rxjs/operators";
 import { GooglePlus } from "@ionic-native/google-plus";
+import { OneSignal } from "@ionic-native/onesignal";
 
 /**
  * Generated class for the LoginPage page.
@@ -35,6 +36,7 @@ export class LoginPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     private authServ: AuthProvider,
+    private onSignal:OneSignal,
     private googlePlus: GooglePlus,
     private navCtrl: NavController,
     private rolesProvider: RoleProvider
@@ -76,6 +78,7 @@ export class LoginPage {
   onSubmit() {
     this.submitted = true;
     if (this.form.valid) {
+      this.onSignal.setEmail(this.form.value.email).then(resp=>console.log(Response));
       this.authServ
         .login(this.form.value)
         .pipe(first())
